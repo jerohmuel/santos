@@ -36,7 +36,7 @@
  
     <section>
             <div  >
-                    <ul id="data">
+                    <ul id="value">
                         </ul>
             </div>
     </section>
@@ -55,7 +55,7 @@
             // Try to cache your selectors as posible
             // Here's a sample :
             var searchForm = $('#search-form');
-            var parsedata = $('#data');
+            var parsedata = $('#value');
             var items = '';
             var sample = $('#cat-keyword').value;
             //These are the variables we need to request from the API
@@ -73,10 +73,7 @@
                     $("#trick").show();
                     $("#stackload").hide();
                 
-                    
-                // Make an API request IN THIS LINE
                 
-                    // Use this simple AJAX snippet to make a request
                     
                     $.ajax({
                         method: 'GET',
@@ -92,13 +89,16 @@
                         var items = "";
                         if(users.length==0){
                               
-                             items +="<h1>No Results for</h1>"+$textField;
+                             items +=`<h1 id="noresult">No Results for ${$textField} </h1>`;
                              parsedata.append(items);
+                             $("#stackload").show();
+                             $("#trick").hide();
+                             
                              return;
 
                           }
                           else{
-                        // if(users > 0){
+                       
                         users.forEach(user => {
 
                          
@@ -117,12 +117,7 @@
                         parsedata.append(items);
                         
                         $("#trick").hide();
-                        // }else{
-                        //     items += "<p class='noResults'>";
-                        //     items += $noresults + " "+"``"+$textField+"``";
-                        //     items += "</p>" ;
-                        //     $("#trick").show();
-                        // }
+                   
                         
                       
                            
